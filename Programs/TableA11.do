@@ -33,7 +33,7 @@ foreach yvar in timespent percent_recqe {
 	
 xml_tab s1_timespent s1_percent_recqe s2_timespent s2_percent_recqe, ///
 	save("Output\TableA11.xml") replace sheet(TableA11A) font("garamond" 11) ///
-	keep(private) below stats(r2 N) mv("") format(SCLR0 (SCCR0 NCCR3 NCCR3))
+	keep(private) below stats(r2 N) format(SCLR0 (SCCR0 NCCR3 NCCR3))
 	
 mat means=s1_timespent_mean,s1_percent_recqe_mean,s2_timespent_mean,s2_percent_recqe_mean	
 
@@ -53,7 +53,7 @@ foreach yvar in timespent percent_recqe {
 	
 xml_tab s1_timespent s1_percent_recqe s2_timespent s2_percent_recqe, ///
 	save("Output\TableA11.xml") append sheet(TableA11B) font("garamond" 11) ///
-	keep(private) below stats(r2 N) lines(0 2 LAST_ROW 2) mv("") ///
+	keep(private) below stats(r2 N) lines(0 2 LAST_ROW 2) ///
 	format(SCLR0 (SCCR0 NCCR3 NCCR3)) 
 
 
@@ -70,5 +70,5 @@ foreach yvar in timespent percent_recqe {
 	
 xml_tab s1_timespent s1_percent_recqe s2_timespent s2_percent_recqe, ///
 	save("Output\TableA11") append sheet(TableA11C) font("garamond" 11) ///
-	keep(private mbbs qual age gender numafter) below stats(r2 N) mv("") ///
+	keep(private mbbs qual age gender numafter) below stats(r2 N) ///
 	format(SCLR0 (SCCR0 NCCR3 NCCR3))

@@ -21,7 +21,7 @@ foreach yvar in timespent totalquestions examination dispense totalmeds{
 	sum `yvar' if e(sample)==1 // Mean of sample
 	mat s1_`yvar'_mean=s1_`yvar'_mean\[r(mean)\r(sd)]
 	
-	egen provtag=tag(finprovid finclinid) if e(sample)==1
+	*egen provtag=tag(finprovid finclinid) if e(sample)==1
 	count if private==0 & provtag==1
 	mat s1_`yvar'_mean=s1_`yvar'_mean\r(N)
 	count if private==1 & provtag==1

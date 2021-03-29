@@ -67,7 +67,7 @@ foreach yvar in rec1 rec2 rec3 {
 	
 xml_tab s1_rec1 s1_rec2 s1_rec3 s2_rec1 s2_rec2 s2_rec3, ///
 	save("Output\TableA7.xml") append sheet(TableA7B) font("garamond" 11) ///
-	keep(private) below stats(r2 N) mv("") format(SCLR0 (SCCR0 NCCR3 NCCR3))
+	keep(private) below stats(r2 N) format(SCLR0 (SCCR0 NCCR3 NCCR3))
 
 
 * PANEL C: with SP fixed effects, market/district fixed effects	and provider controls
@@ -83,7 +83,7 @@ foreach yvar in rec1 rec2 rec3 {
 	
 xml_tab s1_rec1 s1_rec2 s1_rec3 s2_rec1 s2_rec2 s2_rec3, ///
 	save("Output\TableA7.xml") append sheet(TableA7C) font("garamond" 11) ///
-	keep(private mbbs qual age gender numafter) below stats(r2 N) mv("") format(SCLR0 (SCCR0 NCCR3 NCCR3))
+	keep(private mbbs qual age gender numafter) below stats(r2 N) format(SCLR0 (SCCR0 NCCR3 NCCR3))
 
 clear matrix	
 		

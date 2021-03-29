@@ -57,4 +57,4 @@ use "Data\POData.dta", clear
 		}
 
 xml_tab table, save("Output\TableA17.xml") replace sheet(TableA17) font("garamond" 11) ///
-	format(SCLR0 (SCCR0 NCCR3 NCCR3)) mv("")
+	format(SCLR0 (SCCR0 NCCR3 NCCR3))

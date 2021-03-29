@@ -216,7 +216,7 @@ foreach var in correct_treat helpful_treat wrong_treat correct_only antibiotic t
 
 xml_tab table, ///
 	save("Output\TableA13.xml") replace sheet(Table1) font("garamond" 11) ///
-	format(SCLR0 (SCCR0 NCCR3 NCCR3)) mv("")
+	format(SCLR0 (SCCR0 NCCR3 NCCR3))
 
 
 * PANEL B: Differential Completion
@@ -242,7 +242,7 @@ foreach var in correct_treat helpful_treat wrong_treat correct_only antibiotic t
 	
 xml_tab r1 r2 r3 r4 r5 r6 r7 r8 r9, ///
 	save("Output\TableA13.xml") append sheet(Table2) font("garamond" 11) ///
-	keep(public oneshot public_oneshot) below stats(r2 N) mv("") format(SCLR0 (SCCR0 NCCR3 NCCR3))
+	keep(public oneshot public_oneshot) below stats(r2 N) format(SCLR0 (SCCR0 NCCR3 NCCR3))
 	
 * Plausible values Regressions - Results cannot be outputted. Have to be done manually
 * Note at the moment these include Audit 1 private vs. Audit 2 public also - these are not needed. 	

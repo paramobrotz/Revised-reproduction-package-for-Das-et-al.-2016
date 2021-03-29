@@ -464,7 +464,7 @@ use "Data\VillageDataset.dta", clear
 			"Fraction of visits to unqualified providers (conditional on Public MBBS)" " " ///
 			"Number of villages" "Village population" "Households per village" "Total provider visits in last one month" "Average provider visits in last one month") ///
 		rblanks(0 "Panel A: Number of providers" SCLB0, 24 "Panel B: Composition of demand" SCLB0, 44 "Panel C: Sample size" SCLB0) ///	
-			title("Table 1: Health market attributes") mv("") ///
+			title("Table 1: Health market attributes") ///
 		cwidth(0 180, 1 60, 2 60, 3 60) format(SCLR0 (SCCB0 NCCR2 NCCR2)) ///
 		notes("Notes:", ///
 			"1) Standard deviations in parentheses", ///

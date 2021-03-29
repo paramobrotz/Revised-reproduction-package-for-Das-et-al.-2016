@@ -37,7 +37,7 @@ foreach yvar in said_diagnosis correct_diag correct_uncond correct_treat helpful
 	
 xml_tab s1_timespent s1_percent_recqe s1_theta_mle s1_said_diagnosis s1_correct_diag s1_correct_uncond s1_correct_treat s1_helpful_treat s1_wrong_treat s1_correct_only s1_antibiotic s1_totalmeds s2_timespent s2_percent_recqe s2_theta_mle s2_said_diagnosis s2_correct_diag s2_correct_uncond s2_correct_treat s2_helpful_treat s2_wrong_treat s2_correct_only s2_antibiotic s2_totalmeds, ///
 	save("Output\TableA12.xml") replace sheet(TableA12) font("garamond" 11) ///
-	keep(private facilitiesindex) below stats(r2 N) mv("") ///
+	keep(private facilitiesindex) below stats(r2 N) ///
 	format(SCLR0 (SCCR0 NCCR3 NCCR3)) 
 	
 		

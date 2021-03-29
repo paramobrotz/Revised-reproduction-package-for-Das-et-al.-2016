@@ -211,6 +211,6 @@ Note: These have to copied manually for results or Log File
  		rnames("UNSTABLE ANGINA" "Correct treatment" "Correct treatment (alternate)" "helpful treat" "wrong treat" "Aspirin" "Anti-platelet agents" "Referred" "ECG" "ECG & Referred" "Antibiotic" "Number of observations" ///
 			"DYSENTERY" "Correct treatment"  "helpful treat" "wrong treat" "ORS" "Asked to see child" "Antibiotic" "Number of observations" ///
 			"ASTHMA" "Correct treatment"  "helpful treat" "wrong treat" "Bronchodilators" "Theophylline" "Oral Corticosteroids" "Antibiotic" "Number of observations") ///
-		mv("") title("Table A9. Treatment of Standardized Patients by Case") ///
+		title("Table A9. Treatment of Standardized Patients by Case") ///
 		format(SCLR (SCCR0 NCCR2))
 	

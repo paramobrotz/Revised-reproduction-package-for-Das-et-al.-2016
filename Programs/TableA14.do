@@ -50,7 +50,7 @@ foreach var in timespent percent_recqe theta_mle {
 	
 	xml_tab r1 r2, ///
 		save("Output\TableA14.xml") replace sheet(Table`i') font("garamond" 11) ///
-		keep(private) below stats(r2 N) mv("") format(SCLR0 (SCCR0 NCCR3 NCCR3))
+		keep(private) below stats(r2 N) format(SCLR0 (SCCR0 NCCR3 NCCR3))
 	local i=`i'+1
 	estimates clear
 	}
@@ -141,7 +141,7 @@ foreach var in correct_treat helpful_treat wrong_treat correct_only antibiotic t
 	
 	xml_tab r1 r2, ///
 		save("Output\TableA14.xml") append sheet(Table`i') font("garamond" 11) ///
-		keep(private) below stats(r2 N) mv("") format(SCLR0 (SCCR0 NCCR3 NCCR3))
+		keep(private) below stats(r2 N) format(SCLR0 (SCCR0 NCCR3 NCCR3))
 	local i=`i'+1
 	estimates clear
 	}

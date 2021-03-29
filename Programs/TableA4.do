@@ -56,4 +56,4 @@ foreach var in c3_timespent c3_percent_recqe c3_said_diagnosis c3_correct_diag c
 	}
 	
 xml_tab r1 r2 r3 r4 r5 r6 r7 r8 r9, save("Output\TableA4.xml") replace below sheet(TableA4) font("garamond" 11) ///
-	mv("") format(SCLR0 (SCCB0 NCCR3 NCCR3))
+	format(SCLR0 (SCCB0 NCCR3 NCCR3))

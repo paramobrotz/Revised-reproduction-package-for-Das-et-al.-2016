@@ -54,7 +54,7 @@ drop if case==2 // Unstable Angina and Asthma Cases only
 xml_tab timespent percent_recqe said_diagnosis correct_diag correct_uncond correct_treat helpful_treat wrong_treat correct_only antibiotic totalmeds referaway timespent_fe percent_recqe_fe said_diagnosis_fe correct_diag_fe correct_uncond_fe correct_treat_fe helpful_treat_fe wrong_treat_fe correct_only_fe antibiotic_fe totalmeds_fe referaway_fe, ///
 	save("Output\TableA18.xml") replace sheet(TableA18) font("garamond" 11) ///
 	keep(dual age gender numafter) below stats(r2 N) ///
-	title("Table 5: Dual providers' effort in the public sector") mv("") ///
+	title("Table 5: Dual providers' effort in the public sector") ///
 	format(SCLR0 (SCCR0 NCCR3 NCCR3)) 
 	
 mat means=timespent_mean, percent_recqe_mean, said_diagnosis_mean, correct_diag_mean, correct_uncond_mean, correct_treat_mean, helpful_treat_mean, wrong_treat_mean, correct_only_mean, antibiotic_mean, totalmeds_mean, referaway_mean, timespent_fe_mean, percent_recqe_fe_mean, said_diagnosis_fe_mean, correct_diag_fe_mean, correct_uncond_fe_mean, correct_treat_fe_mean, helpful_treat_fe_mean, wrong_treat_fe_mean, correct_only_fe_mean, antibiotic_fe_mean, totalmeds_fe_mean, referaway_fe_mean

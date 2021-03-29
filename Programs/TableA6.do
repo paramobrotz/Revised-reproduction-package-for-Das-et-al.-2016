@@ -130,7 +130,7 @@ Table A6: List of Checklist Items Used in the Treatment of SPs
 		
 	xml_tab table, save("Output\TableA6") replace sheet(TableA6) font("garamond" 11) ///
 		cnames("All" "Public" "Private" "Difference" " " "All" "Public" "Private" "Difference") ///
-		rnames(`rownames') title("Table A4. List of Checklist Items Used in the treatment of Standardized Patients") mv("") ///
+		rnames(`rownames') title("Table A4. List of Checklist Items Used in the treatment of Standardized Patients") ///
 		format(SCLR (NCCR3)) ///
 		notes("Notes:")	
 		

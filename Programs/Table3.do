@@ -41,7 +41,7 @@ foreach yvar in timespent percent_recqe theta_mle {
 	
 xml_tab s1_timespent s1_percent_recqe s1_theta_mle s2_timespent s2_percent_recqe s2_theta_mle, ///
 	save("Output\Table3.xml") replace sheet(Table3A) font("garamond" 11) ///
-	keep(private) below stats(r2 N) mv("") format(SCLR0 (SCCR0 NCCR3 NCCR3))
+	keep(private) below stats(r2 N) format(SCLR0 (SCCR0 NCCR3 NCCR3))
 	
 mat means=s1_timespent_mean,s1_percent_recqe_mean,s1_theta_mle_mean,s2_timespent_mean,s2_percent_recqe_mean,s2_theta_mle_mean	
 
@@ -78,7 +78,7 @@ foreach yvar in timespent percent_recqe theta_mle {
 	
 xml_tab s1_timespent s1_percent_recqe s1_theta_mle s2_timespent s2_percent_recqe s2_theta_mle, ///
 	save("Output\Table3.xml") append sheet(Table3C) font("garamond" 11) ///
-	keep(private mbbs qual age gender numafter) below stats(r2 N)  mv("") format(SCLR0 (SCCR0 NCCR3 NCCR3))
+	keep(private mbbs qual age gender numafter) below stats(r2 N) format(SCLR0 (SCCR0 NCCR3 NCCR3))
 
 			
 * Plausible values Regressions		

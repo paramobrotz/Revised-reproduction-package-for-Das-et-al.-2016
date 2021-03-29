@@ -34,7 +34,7 @@ foreach yvar in said_diagnosis correct_diag correct_uncond {
 	
 xml_tab s1_said_diagnosis s1_correct_diag s1_correct_uncond s2_said_diagnosis s2_correct_diag s2_correct_uncond, ///
 	save("Output\Table4.xml") replace sheet(Table4A) font("garamond" 11) ///
-	keep(private) below stats(r2 N) mv("") ///
+	keep(private) below stats(r2 N) ///
 	format(SCLR0 (SCCR0 NCCR3 NCCR3))
 	
 mat means=s1_said_diagnosis_mean, s1_correct_diag_mean, s1_correct_uncond_mean, s2_said_diagnosis_mean, s2_correct_diag_mean, s2_correct_uncond_mean	
@@ -58,7 +58,7 @@ foreach yvar in said_diagnosis correct_diag correct_uncond {
 	
 xml_tab s1_said_diagnosis s1_correct_diag s1_correct_uncond s2_said_diagnosis s2_correct_diag s2_correct_uncond, ///
 	save("Output\Table4.xml") append sheet(Table4B) font("garamond" 11) ///
-	keep(private) below stats(r2 N) mv("") ///
+	keep(private) below stats(r2 N) ///
 	format(SCLR0 (SCCR0 NCCR3 NCCR3))
 
 	
@@ -77,6 +77,6 @@ foreach yvar in said_diagnosis correct_diag correct_uncond {
 	
 xml_tab s1_said_diagnosis s1_correct_diag s1_correct_uncond s2_said_diagnosis s2_correct_diag s2_correct_uncond, ///
 	save("Output\Table4.xml") append sheet(Table4C) font("garamond" 11) ///
-	keep(private mbbs qual age gender numafter) below stats(r2 N) mv("") ///
+	keep(private mbbs qual age gender numafter) below stats(r2 N) ///
 	format(SCLR0 (SCCR0 NCCR3 NCCR3))
 

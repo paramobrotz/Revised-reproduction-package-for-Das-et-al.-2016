@@ -37,7 +37,7 @@ foreach yvar in correct_treat helpful_treat wrong_treat correct_only antibiotic 
 	
 xml_tab s1_correct_treat s1_helpful_treat s1_wrong_treat s1_correct_only s1_antibiotic s1_totalmeds s2_correct_treat s2_helpful_treat s2_wrong_treat s2_correct_only s2_antibiotic s2_totalmeds, ///
 	save("Output\Table5.xml") replace sheet(Table5A) font("garamond" 11) ///
-	keep(private) below stats(r2 N) mv("") format(SCLR0 (SCCR0 NCCR3 NCCR3))
+	keep(private) below stats(r2 N) format(SCLR0 (SCCR0 NCCR3 NCCR3))
 	
 mat means=s1_correct_treat_mean, s1_helpful_treat_mean, s1_wrong_treat_mean, s1_correct_only_mean, s1_antibiotic_mean, s1_totalmeds_mean, s2_correct_treat_mean, s2_helpful_treat_mean, s2_wrong_treat_mean, s2_correct_only_mean, s2_antibiotic_mean, s2_totalmeds_mean
 xml_tab means, save("Output\Table5.xml") append sheet(Table5A_means) font("garamond" 11) ///
@@ -46,7 +46,7 @@ xml_tab means, save("Output\Table5.xml") append sheet(Table5A_means) font("garam
 estimates clear		
 	
 	
-* PANEL B: Regressions with controls, SP fixed effects, district/provider fixed effects	
+* PANEL B: Regressions without controls, SP fixed effects, district/provider fixed effects	 
 foreach yvar in correct_treat helpful_treat wrong_treat correct_only antibiotic totalmeds{
 
 	* Audit 1
@@ -61,7 +61,7 @@ foreach yvar in correct_treat helpful_treat wrong_treat correct_only antibiotic 
 	
 xml_tab s1_correct_treat s1_helpful_treat s1_wrong_treat s1_correct_only s1_antibiotic s1_totalmeds s2_correct_treat s2_helpful_treat s2_wrong_treat s2_correct_only s2_antibiotic s2_totalmeds, ///
 	save("Output\Table5.xml") append sheet(Table5B) font("garamond" 11) ///
-	keep(private) below stats(r2 N) mv("") format(SCLR0 (SCCR0 NCCR3 NCCR3)) 
+	keep(private) below stats(r2 N) format(SCLR0 (SCCR0 NCCR3 NCCR3)) 
 	
 	
 * PANEL C: Regressions with controls, SP fixed effects, district/provider fixed effects	
@@ -79,5 +79,5 @@ foreach yvar in correct_treat helpful_treat wrong_treat correct_only antibiotic 
 	
 xml_tab s1_correct_treat s1_helpful_treat s1_wrong_treat s1_correct_only s1_antibiotic s1_totalmeds s2_correct_treat s2_helpful_treat s2_wrong_treat s2_correct_only s2_antibiotic s2_totalmeds, ///
 	save("Output\Table5.xml") append sheet(Table5C) font("garamond" 11) ///
-	keep(private mbbs qual age gender numafter) below stats(r2 N) mv("") format(SCLR0 (SCCR0 NCCR3 NCCR3))
+	keep(private mbbs qual age gender numafter) below stats(r2 N) format(SCLR0 (SCCR0 NCCR3 NCCR3))
 

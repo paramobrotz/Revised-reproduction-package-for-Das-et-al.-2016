@@ -81,7 +81,7 @@ xml_tab table, save("Output\Table2.xml") replace sheet(Table2) font("garamond" 1
 	rnames("Age of Provider" " " "Is male" " " "More than 12 years of basic education" " " "Has MBBS degree" " " "Has alternative qualification" " " "No medical training" " " "Received non-credentialed training" " " "Has multiple practices" " " ///
 		"Tenure in years at current location" " " "Dispense medicine" " " "Consultation fee (Rs.)" " " "Average number of patients per day (self reported in census)" " " ///
 		"Average number of patients per day (in physician observations)" " " "Electricity" " " "Stethoscope" " " "Blood pressure cuff" " " "Thermometer" " " "Weighing Scale" " " "Handwash facility" " " "Number of providers") /// 
-		title("Table 2: Characteristics of providers and practices") mv("") ///
+		title("Table 2: Characteristics of providers and practices") ///
 	rblanks(0 "Panel A: Provider Characteristics" SCLB0, 10 "Panel B: Clinic Characteristics" SCLB0) ///	
 	cwidth(0 180, 1 60, 2 60, 3 60, 4 15, 5 60, 6 60, 7 60) format(SCLR0 (SCCB0 NCCR2 NCCR2)) ///
 	notes("Notes:", ///

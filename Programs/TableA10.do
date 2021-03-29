@@ -91,7 +91,7 @@ xml_tab s1 s2 s3 s4 s5 s6 s7 s8 s9 s10 s11 s12, ///
 	save("Output\TableA10.xml") replace sheet(TableA10) font("garamond" 11) ///
 	keep(private  mbbs qual age gender numafter) below stats(r2 N) ///
 	cnames("Audit 1" "Dual" "Audit 1 MI Only" "Dual MI Only" "Audit 1 Controls" "Dual Controls" "Audit 1 MI Only Controls" "Dual MI Only Controls") ///
-	title("Table 5. Treatment in the public and private sectors") mv("") ///
+	title("Table 5. Treatment in the public and private sectors") ///
 	format(SCLR0 (SCCR0 NCCR3 NCCR3)) 
 	
 	

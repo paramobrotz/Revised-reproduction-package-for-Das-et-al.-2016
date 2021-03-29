@@ -67,7 +67,7 @@ foreach yvar in timespent percent_recqe {
 xml_tab s1c1_timespent s1c1_percent_recqe s1c1_said_diagnosis s1c1_correct_diag s1c1_correct_uncond s1c1_correct_treat s1c1_helpful_treat s1c1_wrong_treat s1c1_correct_only s1c1_antibiotic s1c1_totalmeds ///
 		s2c1_timespent s2c1_percent_recqe s2c1_said_diagnosis s2c1_correct_diag s2c1_correct_uncond s2c1_correct_treat s2c1_helpful_treat s2c1_wrong_treat s2c1_correct_only s2c1_antibiotic s2c1_totalmeds, ///
 	save("Output\TableA8.xml") replace sheet(TableA8c1) font("garamond" 11) ///
-	keep(private) below stats(r2 N) mv("") format(SCLR0 (SCCR0 NCCR3 NCCR3)) cblanks(2 5 11 13 16)
+	keep(private) below stats(r2 N) format(SCLR0 (SCCR0 NCCR3 NCCR3)) cblanks(2 5 11 13 16)
 	
 mat mean1=[s1c1_timespent_mean, s1c1_percent_recqe_mean, s1c1_said_diagnosis_mean, s1c1_correct_diag_mean, s1c1_correct_uncond_mean, s1c1_correct_treat_mean, s1c1_helpful_treat_mean, s1c1_wrong_treat_mean, s1c1_correct_only_mean, s1c1_antibiotic_mean, s1c1_totalmeds_mean, ///
 	s2c1_timespent_mean, s2c1_percent_recqe_mean, s2c1_said_diagnosis_mean, s2c1_correct_diag_mean, s2c1_correct_uncond_mean, s2c1_correct_treat_mean, s2c1_helpful_treat_mean, s2c1_wrong_treat_mean, s2c1_correct_only_mean, s2c1_antibiotic_mean, s2c1_totalmeds_mean]		
@@ -79,7 +79,7 @@ xml_tab mean1, save("Output\TableA8.xml") append sheet(TableA8c1_means) font("ga
 xml_tab s1c3_timespent s1c3_percent_recqe s1c3_said_diagnosis s1c3_correct_diag s1c3_correct_uncond s1c3_correct_treat s1c3_helpful_treat s1c3_wrong_treat s1c3_correct_only s1c3_antibiotic s1c3_totalmeds ///
 		s2c3_timespent s2c3_percent_recqe s2c3_said_diagnosis s2c3_correct_diag s2c3_correct_uncond s2c3_correct_treat s2c3_helpful_treat s2c3_wrong_treat s2c3_correct_only s2c3_antibiotic s2c3_totalmeds, ///
 	save("Output\TableA8.xml") append sheet(TableA8c3) font("garamond" 11) ///
-	keep(private) below stats(r2 N) mv("") format(SCLR0 (SCCR0 NCCR3 NCCR3)) cblanks(2 5 11 13 16)
+	keep(private) below stats(r2 N) format(SCLR0 (SCCR0 NCCR3 NCCR3)) cblanks(2 5 11 13 16)
 
 mat mean2=[s1c3_timespent_mean, s1c3_percent_recqe_mean, s1c3_said_diagnosis_mean, s1c3_correct_diag_mean, s1c3_correct_uncond_mean, s1c3_correct_treat_mean, s1c3_helpful_treat_mean, s1c3_wrong_treat_mean, s1c3_correct_only_mean, s1c3_antibiotic_mean, s1c3_totalmeds_mean, ///
 	s2c3_timespent_mean, s2c3_percent_recqe_mean, s2c3_said_diagnosis_mean, s2c3_correct_diag_mean, s2c3_correct_uncond_mean, s2c3_correct_treat_mean, s2c3_helpful_treat_mean, s2c3_wrong_treat_mean, s2c3_correct_only_mean, s2c3_antibiotic_mean, s2c3_totalmeds_mean]		
@@ -91,7 +91,7 @@ xml_tab mean2, save("Output\TableA8.xml") append sheet(TableA8c3_means) font("ga
 xml_tab s1c2_timespent s1c2_percent_recqe ///
 		s2c2_timespent s2c2_percent_recqe, ///	
 	save("Output\TableA8.xml") append sheet(TableA8c2) font("garamond" 11) ///
-	keep(private) below stats(r2 N) mv("") format(SCLR0 (SCCR0 NCCR3 NCCR3)) cblanks(2 5 11 13 16)
+	keep(private) below stats(r2 N) format(SCLR0 (SCCR0 NCCR3 NCCR3)) cblanks(2 5 11 13 16)
 	
 mat mean3=[s1c2_timespent_mean, s1c2_percent_recqe_mean, ///
 	s2c2_timespent_mean, s2c2_percent_recqe_mean]		

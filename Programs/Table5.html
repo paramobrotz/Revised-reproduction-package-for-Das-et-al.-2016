@@ -454,8 +454,8 @@ summary(model3)</code></pre>
 </div>
 <div id="robustness-check" class="section level1">
 <h1>Robustness Check:</h1>
-<div id="see-whether-the-prefered-specification-has-similar-behavior-when-using-probit-model" class="section level2">
-<h2>See whether the prefered specification has similar behavior when using probit model:</h2>
+<div id="see-whether-the-prefered-specification-panel-b-has-similar-behavior-when-using-probit-model" class="section level2">
+<h2>See whether the prefered specification (panel b) has similar behavior when using probit model:</h2>
 <pre class="r"><code># Comditional data:
 tmp &lt;- SPdata[SPdata$dual ==1 &amp; SPdata$round == 2 &amp; SPdata$case!=2, ]
 tmp$distid &lt;- as.factor(tmp$distid)
@@ -492,7 +492,186 @@ summary(model4)</code></pre>
 ## distid24    0.9007197172203345036933797018718905746936798096
 ## distid30    0.4550699159224229628506463996018283069133758545
 ## distid43    0.1286686686116259026313457525247940793633460999</code></pre>
-<p>To interpret this, note that the probability of a public clinic providing a correct treatment is 0.373 (table 5), which is a z score of -0.31, since private increases the z score by 0.54 accorrding to the probit model, then the probability of private is 0.59, so there is a 0.21 increase in probability. This is larger than the originally reported results, but within any reasonable margin of error. This is a rough estimate, but shows that this model leads to similar results relative to the linear model.</p>
+<p>To interpret this, note that the probability of a public clinic providing a correct treatment is 0.373 (table 5), which is a z score of -0.31, since private increases the z score by 0.54 according to the probit model, then the probability of private is 0.59, so there is a 0.21 increase in probability. This is larger than the originally reported results, but within any reasonable margin of error. This is a rough estimate, but shows that this model leads to similar results relative to the linear model.</p>
+<p>The previous interpretation can be calculated directly using the following command:</p>
+<pre class="r"><code># Comditional data:
+tmp &lt;- SPdata[SPdata$dual ==1 &amp; SPdata$round == 2 &amp; SPdata$case!=2, ]
+tmp$distid &lt;- as.factor(tmp$distid)
+# Linear regression: 
+model4_m &lt;- probitmfx(correct_treat ~ private + case3 + ssp2 + ssp3 +ssp4 +ssp5 +ssp6 +ssp7 +ssp8 +ssp9 +ssp10 +ssp11 +ssp12 + ssp13 +ssp14 +ssp15 + distid, data = tmp, robust = TRUE, clustervar1 = &quot;finprovid&quot;)
+model4_m</code></pre>
+<pre><code>## Call:
+## probitmfx(formula = correct_treat ~ private + case3 + ssp2 + 
+##     ssp3 + ssp4 + ssp5 + ssp6 + ssp7 + ssp8 + ssp9 + ssp10 + 
+##     ssp11 + ssp12 + ssp13 + ssp14 + ssp15 + distid, data = tmp, 
+##     robust = TRUE, clustervar1 = &quot;finprovid&quot;)
+## 
+## Marginal Effects:
+##            dF/dx Std. Err.      z               P&gt;|z|    
+## private   0.2119    0.0767   2.76              0.0057 ** 
+## case3     0.9618    0.0143  67.32 &lt;0.0000000000000002 ***
+## ssp3      0.2688    0.1223   2.20              0.0279 *  
+## ssp7      0.1209    0.1209   1.00              0.3173    
+## ssp9      0.3290    0.1241   2.65              0.0080 ** 
+## ssp10    -0.4586    0.0421 -10.90 &lt;0.0000000000000002 ***
+## ssp11     0.8430    0.0380  22.17 &lt;0.0000000000000002 ***
+## ssp13     0.8004    0.0349  22.91 &lt;0.0000000000000002 ***
+## distid16  0.0246    0.1442   0.17              0.8646    
+## distid24  0.0160    0.1355   0.12              0.9059    
+## distid30 -0.1047    0.1432  -0.73              0.4647    
+## distid43 -0.1875    0.1253  -1.50              0.1347    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## dF/dx is for discrete change for the following variables:
+## 
+##  [1] &quot;private&quot;  &quot;case3&quot;    &quot;ssp3&quot;     &quot;ssp7&quot;     &quot;ssp9&quot;     &quot;ssp10&quot;   
+##  [7] &quot;ssp11&quot;    &quot;ssp13&quot;    &quot;distid16&quot; &quot;distid24&quot; &quot;distid30&quot; &quot;distid43&quot;</code></pre>
+</div>
+<div id="panel-c-probit-version" class="section level2">
+<h2>Panel c Probit version:</h2>
+<pre class="r"><code># Comditional data:
+tmp &lt;- SPdata[SPdata$dual ==1 &amp; SPdata$round == 2 &amp; SPdata$case!=2, ]
+tmp$distid &lt;- as.factor(tmp$distid)
+# Linear regression: 
+model4 &lt;- glm.cluster(data = tmp,correct_treat ~ private + case3 + age + gender + numafter + ssp2 + ssp3 +ssp4 +ssp5 +ssp6 +ssp7 +ssp8 +ssp9 +ssp10 +ssp11 +ssp12 +
+     ssp13 +ssp14 +ssp15 + distid, cluster = tmp$finprovid, family = binomial(link = &quot;probit&quot;))
+
+summary(model4)</code></pre>
+<pre><code>##              Estimate Std. Error  z value
+## (Intercept) -5.595615    0.92969  -6.0188
+## private      0.618096    0.20006   3.0895
+## case3        5.521978    0.44407  12.4349
+## age         -0.005913    0.01220  -0.4845
+## gender       0.156751    0.37678   0.4160
+## numafter     0.016683    0.04322   0.3860
+## ssp3         0.675326    0.33269   2.0299
+## ssp7         0.307206    0.30905   0.9940
+## ssp9         0.985264    0.37969   2.5949
+## ssp10       -4.651881    0.41227 -11.2836
+## ssp11        4.715952    0.62308   7.5688
+## ssp13        4.603471    0.41029  11.2200
+## distid16    -0.057107    0.41565  -0.1374
+## distid24    -0.142459    0.36429  -0.3911
+## distid30    -0.340481    0.34275  -0.9934
+## distid43    -0.544033    0.33650  -1.6167
+##                                             Pr(&gt;|z|)
+## (Intercept) 0.00000000175731306845845052541470188157
+## private     0.00200507397397558118773419622016263020
+## case3       0.00000000000000000000000000000000001691
+## age         0.62801407565090261453377706857281737030
+## gender      0.67738808663661687070600692095467820764
+## numafter    0.69948293259090377205211552791297435760
+## ssp3        0.04236889897872735816219957882822200190
+## ssp7        0.32021008645980292284249912881932687014
+## ssp9        0.00946139190386435444124479943184269359
+## ssp10       0.00000000000000000000000000001580965662
+## ssp11       0.00000000000003765994157484391840172433
+## ssp13       0.00000000000000000000000000003254534193
+## distid16    0.89072069985200630348742834030417725444
+## distid24    0.69575730434913329869317522025085054338
+## distid30    0.32052312573682195662172489392105489969
+## distid43    0.10593318626458116116229035696960636415</code></pre>
+<p>Here we find a similar pattern as before, where including controls increases the overall effect of being a private practice.</p>
+<pre class="r"><code># Comditional data:
+tmp &lt;- SPdata[SPdata$dual ==1 &amp; SPdata$round == 2 &amp; SPdata$case!=2, ]
+tmp$distid &lt;- as.factor(tmp$distid)
+# Linear regression: 
+model4_m &lt;- probitmfx(correct_treat ~ private + case3 + age + gender + numafter + ssp2 + ssp3 +ssp4 +ssp5 +ssp6 +ssp7 +ssp8 +ssp9 +ssp10 +ssp11 +ssp12 +
+     ssp13 +ssp14 +ssp15 + distid, data = tmp, robust = TRUE, clustervar1 = &quot;finprovid&quot;)
+model4_m</code></pre>
+<pre><code>## Call:
+## probitmfx(formula = correct_treat ~ private + case3 + age + gender + 
+##     numafter + ssp2 + ssp3 + ssp4 + ssp5 + ssp6 + ssp7 + ssp8 + 
+##     ssp9 + ssp10 + ssp11 + ssp12 + ssp13 + ssp14 + ssp15 + distid, 
+##     data = tmp, robust = TRUE, clustervar1 = &quot;finprovid&quot;)
+## 
+## Marginal Effects:
+##             dF/dx Std. Err.     z               P&gt;|z|    
+## private   0.23965   0.08106  2.96              0.0031 ** 
+## case3     0.95317   0.01841 51.79 &lt;0.0000000000000002 ***
+## age      -0.00233   0.00514 -0.45              0.6505    
+## gender    0.06104   0.15464  0.39              0.6930    
+## numafter  0.00657   0.01819  0.36              0.7181    
+## ssp3      0.26381   0.13162  2.00              0.0450 *  
+## ssp7      0.12184   0.13101  0.93              0.3523    
+## ssp9      0.37190   0.13141  2.83              0.0047 ** 
+## ssp10    -0.44504   0.04496 -9.90 &lt;0.0000000000000002 ***
+## ssp11     0.85067   0.03925 21.67 &lt;0.0000000000000002 ***
+## ssp13     0.80720   0.03552 22.72 &lt;0.0000000000000002 ***
+## distid16 -0.02242   0.17394 -0.13              0.8974    
+## distid24 -0.05553   0.14986 -0.37              0.7110    
+## distid30 -0.13003   0.13330 -0.98              0.3293    
+## distid43 -0.20918   0.13234 -1.58              0.1140    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## dF/dx is for discrete change for the following variables:
+## 
+##  [1] &quot;private&quot;  &quot;case3&quot;    &quot;gender&quot;   &quot;ssp3&quot;     &quot;ssp7&quot;     &quot;ssp9&quot;    
+##  [7] &quot;ssp10&quot;    &quot;ssp11&quot;    &quot;ssp13&quot;    &quot;distid16&quot; &quot;distid24&quot; &quot;distid30&quot;
+## [13] &quot;distid43&quot;</code></pre>
+</div>
+<div id="no-controls-and-sp-district-fixed-effects-using-all-cases-not-dropping-dyseny" class="section level2">
+<h2>No controls and SP + district fixed effects, using all cases (not dropping dyseny):</h2>
+<pre class="r"><code># Comditional data:
+tmp &lt;- SPdata[SPdata$dual ==1 &amp; SPdata$round == 2, ]
+tmp$distid &lt;- as.factor(tmp$distid)
+# Linear regression: 
+model2 &lt;- lm.cluster(correct_treat ~ private + case3 + case2 + ssp2 + ssp3 +ssp4 +ssp5 +ssp6 +ssp7 +ssp8 +ssp9 +ssp10 +ssp11 +ssp12 +
+     ssp13 +ssp14 +ssp15 + distid, data = tmp, cluster = tmp$finprovid)
+
+summary(model2)</code></pre>
+<pre><code>## R^2= 0.235 
+## 
+##              Estimate Std. Error t value                        Pr(&gt;|t|)
+## (Intercept) -0.590268    0.11643 -5.0697 0.00000039837701536250000123110
+## private      0.055448    0.04726  1.1732 0.24069572878475509192242043355
+## case3        0.927396    0.08686 10.6771 0.00000000000000000000000001303
+## case2        1.283833    0.14072  9.1236 0.00000000000000000007268403068
+## ssp3         0.255930    0.11242  2.2765 0.02281778788048630449147857746
+## ssp5        -0.504279    0.12171 -4.1433 0.00003422847292484719705597460
+## ssp7         0.139240    0.10868  1.2812 0.20011062212944030758166036321
+## ssp9         0.326658    0.11284  2.8949 0.00379304273298061017660742777
+## ssp10       -0.565368    0.09492 -5.9561 0.00000000258320222557860934218
+## ssp11        0.639925    0.13188  4.8525 0.00000121907757523708068308176
+## ssp13        0.607424    0.09379  6.4764 0.00000000009396031080044388860
+## distid16     0.160829    0.07953  2.0223 0.04314264416087004727629050649
+## distid24     0.228241    0.06601  3.4577 0.00054478302476755244808381828
+## distid30     0.029954    0.05944  0.5040 0.61429332531820213247897299880
+## distid43     0.005785    0.05251  0.1102 0.91226457161913687698984176677</code></pre>
+</div>
+<div id="alternative-controls-age-squared-and-district-sp-fixed-effects" class="section level2">
+<h2>Alternative Controls (age squared), and district + SP fixed effects:</h2>
+<pre class="r"><code># Comditional data:
+tmp &lt;- SPdata[SPdata$dual ==1 &amp; SPdata$round == 2 &amp; SPdata$case!=2, ]
+tmp$distid &lt;- as.factor(tmp$distid)
+tmp$age2 &lt;- tmp$age^2
+# Linear regression: 
+model3 &lt;- lm.cluster(correct_treat ~ private + case3 + age + age2 + gender + numafter + ssp2 + ssp3 +ssp4 +ssp5 +ssp6 +ssp7 +ssp8 +ssp9 +ssp10 +ssp11 +ssp12 +
+     ssp13 +ssp14 +ssp15 + distid, data = tmp, cluster = tmp$finprovid)
+
+summary(model3)</code></pre>
+<pre><code>## R^2= 0.2889 
+## 
+##               Estimate Std. Error t value    Pr(&gt;|t|)
+## (Intercept)  0.9129336  0.8114695  1.1250 0.260573137
+## private      0.1848331  0.0670035  2.7586 0.005805658
+## case3        0.6841866  0.1428891  4.7882 0.000001683
+## age         -0.0528643  0.0313020 -1.6888 0.091248444
+## age2         0.0005606  0.0003344  1.6763 0.093687247
+## gender       0.0218940  0.1157961  0.1891 0.850034907
+## numafter     0.0055756  0.0145731  0.3826 0.702017338
+## ssp3         0.2467042  0.1244987  1.9816 0.047526138
+## ssp7         0.1220053  0.1181756  1.0324 0.301881328
+## ssp9         0.3442415  0.1217199  2.8281 0.004681857
+## ssp10       -0.3521324  0.1240890 -2.8377 0.004543426
+## ssp11        0.4343771  0.1932374  2.2479 0.024582954
+## ssp13        0.4049565  0.1579585  2.5637 0.010356605
+## distid16    -0.0276772  0.1482689 -0.1867 0.851919967
+## distid24    -0.0338075  0.1320416 -0.2560 0.797922235
+## distid30    -0.1130549  0.1261407 -0.8963 0.370113491
+## distid43    -0.1634284  0.1259045 -1.2980 0.194275342</code></pre>
 </div>
 </div>
 

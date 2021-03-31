@@ -8,20 +8,9 @@ output: html_document
 ```{r setup, include=FALSE}
 rm(list=ls())
 
-library(tidyverse)
-library(magrittr)
 library(sandwich)
-library(ggplot2)
-#library(causalTree)
-library(rpart)
-library(grf)
-library(rpart.plot)
-library("foreign")
-library("xtable")
-library(glmnet)
-library(gridExtra)
-library(multiwayvcov)
 library(miceadds)
+library(mfx)
 
 # options
 options("scipen"=100, "digits"=4)
@@ -81,7 +70,6 @@ summary(model3)
 
 # Robustness Check: 
 
-
 ## See whether the prefered specification (panel b) has similar behavior when using probit model:
 
 ```{r}
@@ -95,7 +83,18 @@ model4 <- glm.cluster(data = tmp,correct_treat ~ private + case3 + ssp2 + ssp3 +
 summary(model4)
 ```
 
-To interpret this, note that the probability of a public clinic providing a correct treatment is 0.373 (table 5), which is a z score of -0.31, since private increases the z score by 0.54 accorrding to the probit model, then the probability of private is 0.59, so there is a 0.21 increase in probability. This is larger than the originally reported results, but within any reasonable margin of error. This is a rough estimate, but shows that this model leads to similar results relative to the linear model. 
+To interpret this, note that the probability of a public clinic providing a correct treatment is 0.373 (table 5), which is a z score of -0.31, since private increases the z score by 0.54 according to the probit model, then the probability of private is 0.59, so there is a 0.21 increase in probability. This is larger than the originally reported results, but within any reasonable margin of error. This is a rough estimate, but shows that this model leads to similar results relative to the linear model. 
+
+The previous interpretation can be calculated directly using the following command:
+
+```{r}
+# Comditional data:
+tmp <- SPdata[SPdata$dual ==1 & SPdata$round == 2 & SPdata$case!=2, ]
+tmp$distid <- as.factor(tmp$distid)
+# Linear regression: 
+model4_m <- probitmfx(correct_treat ~ private + case3 + ssp2 + ssp3 +ssp4 +ssp5 +ssp6 +ssp7 +ssp8 +ssp9 +ssp10 +ssp11 +ssp12 + ssp13 +ssp14 +ssp15 + distid, data = tmp, robust = TRUE, clustervar1 = "finprovid")
+model4_m
+```
 
 
 ## Panel c Probit version: 
@@ -112,6 +111,16 @@ summary(model4)
 ```
 
 Here we find a similar pattern as before, where including controls increases the overall effect of being a private practice. 
+
+```{r}
+# Comditional data:
+tmp <- SPdata[SPdata$dual ==1 & SPdata$round == 2 & SPdata$case!=2, ]
+tmp$distid <- as.factor(tmp$distid)
+# Linear regression: 
+model4_m <- probitmfx(correct_treat ~ private + case3 + age + gender + numafter + ssp2 + ssp3 +ssp4 +ssp5 +ssp6 +ssp7 +ssp8 +ssp9 +ssp10 +ssp11 +ssp12 +
+     ssp13 +ssp14 +ssp15 + distid, data = tmp, robust = TRUE, clustervar1 = "finprovid")
+model4_m
+```
 
 ## No controls and SP + district fixed effects, using all cases (not dropping dyseny):
 
